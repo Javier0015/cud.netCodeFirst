@@ -1,47 +1,81 @@
 ﻿@model IEnumerable<Crud.Models.Usuarios>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Inicio";
+    Layout = null;
 }
 
-<h1>Index</h1>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/fondo.css" />
+    <noscript><link rel="stylesheet" href="~/css/noscript.css" /></noscript>
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numero)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                
+                <h2 class="text-center">ㅤ</h2>
+                <h2 class="text-center">CRUD CODE FIRST</h2>
+                <h2 class="text-center">ㅤ</h2>
+
+                <table class="table" style="color: #ffffff;">
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Correo
+                        </th>
+                        <th>
+                            Telefono
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre, "",new { @style = "color: white;" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Correo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+                <p class="text-center">
+                    @Html.ActionLink("Crear nuevo", "Create", null,"" ,new { @class = "btn btn-primary" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="login-forgot-pass"> © Kkotas Games </a>
+    <div class="underlay-photo"></div>
+    <div class="underlay-black"></div>
+    <!-- Scripts -->
+   <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery.scrollex.min.js"></script>
+    <script src="~/Content/js/browser.min.js"></script>
+    <script src="~/Content/js/breakpoints.min.js"></script>
+    <script src="~/Content/js/util.js"></script>
+    <script src="~/Content/js/main.js"></script>
+</body>
+</html>

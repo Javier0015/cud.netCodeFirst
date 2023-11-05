@@ -1,43 +1,61 @@
 ﻿@model Crud.Models.Usuarios
-
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "Create";
+    Layout = null;
 }
 
-<h1>Create</h1>
-
-<h4>Usuarios</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Crear</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/fondo.css" />
+    <noscript><link rel="stylesheet" href="~/css/noscript.css" /></noscript>
+</head>
+<body>
+    <div class="container d-flex align-items-center" style="height: 100vh;">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-6">
+                <h2 class="text-center">Crear nuevo usuario</h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" value="Enviar" class="btn btn-primary" />ㅤ
+                        @Html.ActionLink("Cancelar", "Index", null, "", new { @class = "btn btn-secondary" })
+                    </div>
+                }
             </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Numero" class="control-label"></label>
-                <input asp-for="Numero" class="form-control" />
-                <span asp-validation-for="Numero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <a class="login-forgot-pass"> © Kkotas Games </a>
+    <div class="underlay-photo"></div>
+    <div class="underlay-black"></div>
+    <!-- Scripts -->
+    
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery.scrollex.min.js"></script>
+    <script src="~/Content/js/browser.min.js"></script>
+    <script src="~/Content/js/breakpoints.min.js"></script>
+    <script src="~/Content/js/util.js"></script>
+    <script src="~/Content/js/main.js"></script>
+</body>
+</html>
